@@ -26,7 +26,7 @@ users=[]
 @app.route("/")
 def hello():
     1/0
-    res = {"Flask-API Develop": "1.0"}
+    res = {"Flask-API Develop Login": "1.0"}
     return jsonify(res), 200
 
 @app.route("/register", methods=["POST"])
