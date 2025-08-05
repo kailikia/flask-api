@@ -3,30 +3,30 @@ from flask_cors import CORS
 
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 
-import sentry_sdk
+# import sentry_sdk
 
-sentry_sdk.init(
-    dsn="https://c1d68e7c34f50b0bbc77b08ad74c1f5d@o491346.ingest.us.sentry.io/4509707544625152",
-    # Add data like request headers and IP for users,
-    # see https://docs.sentry.io/platforms/python/data-management/data-collected/ for more info
-    send_default_pii=True,
-)
+# sentry_sdk.init(
+#     dsn="https://c1d68e7c34f50b0bbc77b08ad74c1f5d@o491346.ingest.us.sentry.io/4509707544625152",
+#     # Add data like request headers and IP for users,
+#     # see https://docs.sentry.io/platforms/python/data-management/data-collected/ for more info
+#     send_default_pii=True,
+# )
 
 app = Flask(__name__)
 
 CORS(app)
 
-app.config["JWT_SECRET_KEY"] = "MyKey@123" 
+app.config["JWT_SECRET_KEY"] = "MyKey@123"
+# app.config["TESTING"] = True 
 
 jwt = JWTManager(app)
 
 products_list = []
-users=[]
+users=[{"email" : "admin@mail.com", "password":"12345"}]
 
 @app.route("/")
 def hello():
-    1/0
-    res = {"Flask-API Develop Login": "1.0"}
+    res = {"Flask-API NGROK Login": "1.0"}
     return jsonify(res), 200
 
 @app.route("/register", methods=["POST"])
@@ -74,4 +74,5 @@ def products():
         error = {"error" : "Method not allowed"}
         return jsonify(error), 405
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
